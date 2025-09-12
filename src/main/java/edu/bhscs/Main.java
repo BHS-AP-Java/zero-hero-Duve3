@@ -19,6 +19,5 @@ class Main {
     System.out.println("");
     System.out.println("Flippnig packet yo!");
     System.out.println("!!!! PROGRAM END   !!!!");
-
   }
 }
