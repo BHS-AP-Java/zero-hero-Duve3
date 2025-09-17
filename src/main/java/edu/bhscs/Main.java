@@ -53,6 +53,22 @@ class Main {
     System.out.println(jhon.getName());
     System.out.println(linda.getName());
 
+    steve.learnSomething("This is pretty awesome");
+    System.out.println(steve.getKnowledge());
+
+    Person p = new Person("mr reiber", 10);
+
+    System.out.println(p.getName() + " is: " + p.getAge() + " years old!");
+
+    p.setAge(1000);
+    p.setAge(-1000);
+    p.setAge(5);
+
+    p.setName("yay");
+
+    System.out.println(p.getName() + " is: " + p.getAge() + " years old!");
+
+
     System.out.println("\n\n\nWORDLE TIME!!");
     QuestionableWordleCopy();
   }
