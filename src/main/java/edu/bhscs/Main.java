@@ -40,6 +40,19 @@ class Main {
     System.out.println();
     System.out.println("ok im done");
 
+    Awesome steve = new Awesome("steve");
+    Awesome sue = new Awesome("sue");
+    Awesome jhon = new Awesome("jhon");
+    Awesome linda = new Awesome("linda");
+
+    Awesome person = new Awesome("person");
+
+    System.out.println(steve.getName());
+    System.out.println(person.getName());
+    System.out.println(sue.getName());
+    System.out.println(jhon.getName());
+    System.out.println(linda.getName());
+
     System.out.println("\n\n\nWORDLE TIME!!");
     QuestionableWordleCopy();
   }
@@ -80,7 +93,7 @@ class Main {
       }
 
       // show to the user what part of their guess was right
-      String correct = "";
+      String correct = "  ";
 
       // works by comparing each char and seeing if any of them are good
       for (var i = 0; i < SOLUTION.length(); i++) {
@@ -89,15 +102,19 @@ class Main {
 
         if (SolutionChar == AnswerChar) {
           correct += "G"; // 🟩 <- emojis dont work in the terminal yo
+        } else if (SOLUTION.indexOf(AnswerChar) != -1) {
+          correct += "Y"; // 🟨
         } else {
           correct += "R"; // 🟥
         }
       }
 
       System.out.println(correct);
-      System.out.println("This is what you got correct (no yellows)\nG = Green/Good, R = Red/Wrong");
+      System.out.println(
+          "This is what you got correct (yellows may show up more than once)\nG = Green/Good, Y = Yellow/Somewhere in the word, R = Red/Wrong");
 
-      // if the user runs out of guesses then we cleanup by closing the scanner and ending the function by returning
+      // if the user runs out of guesses then we cleanup by closing the scanner and ending the
+      //    function by returning
       // we use >= just incase it some how overflows beyond MAX_GUESSES
       if (guesses >= MAX_GUESSES) {
         User.close();
@@ -112,7 +129,6 @@ class Main {
     }
 
     System.out.println("wait you guessed it good job!");
-
 
     // scanner cleanup
     User.close();
