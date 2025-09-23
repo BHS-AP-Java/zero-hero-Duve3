@@ -10,6 +10,9 @@
  * EDGE CASE: machines with too little ram will fail due to memory limitations
  */
 
+ // idea:
+ //  - while loop that allows person go to into different stores that sell different items and cakes
+ //  - turn it into a game
 package edu.bhscs;
 
 import java.util.Scanner;
