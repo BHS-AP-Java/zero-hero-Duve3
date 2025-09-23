@@ -4,21 +4,60 @@
 // 9/19/25
 
 /*
- * DESCRIPTION: mr reiber zero hero + quite questionable wordle copy for fun
- * INPUT: No input unless you get to wordle, then you enter 5 letter words
+ * DESCRIPTION: mr reiber zero hero cake thing
+ * INPUT: You can eat more cake!
  * OUTPUT: Stuff in Command line!!
  * EDGE CASE: machines with too little ram will fail due to memory limitations
  */
 
 package edu.bhscs;
 
+import java.util.Scanner;
+
 class Main {
 
-  public static void main(String[] args) {
-    String theGoodStuff = "chocolate";
-    String otherGoodStuff = "frosting";
-    String evenGooderStuff = "joy";
+  private Scanner scanner;
 
-    new Cake(theGoodStuff, otherGoodStuff, evenGooderStuff);
+  public void main(String[] args) {
+    this.scanner = new Scanner(System.in);
+    Person person = new Person("Person", 50);
+
+    System.out.println("Welcome to my Cake Shop, " + person.getName() + "!");
+    System.out.println("Lets make a cake!");
+    Cake cake = MakeCake();
+    person.recieveItem(cake);
+
+    System.out.println("Would you like to eat your cake now?");
+    String response = this.scanner.nextLine();
+
+    if (response.equalsIgnoreCase("yes")) {
+      Item heldItem = person.getHeldItem();
+      if (heldItem instanceof Cake) {
+        ((Cake) heldItem).eat();
+      } else {
+        System.out.println("You are not holding a cake!");
+      }
+    } else {
+      System.out.println("You can eat your cake later!");
+    }
+
+    System.out.println("Pretty cool cake!");
+    System.out.println("Goodbye!");
+
+    this.scanner.close();
+  }
+
+  private Cake MakeCake() {
+    // makes a cake for the user
+    System.out.println("What flavor of cake would you like?");
+    String flavor = this.scanner.nextLine();
+
+    System.out.println("Give another flavor!");
+    String secondFlavor = this.scanner.nextLine();
+
+    System.out.println("How many slices would you like of this cake?");
+    int slices = this.scanner.nextInt();
+
+    return new Cake(new String[] {flavor, secondFlavor}, slices);
   }
 }
