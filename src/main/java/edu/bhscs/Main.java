@@ -28,7 +28,7 @@ class Main {
     System.out.println("Welcome to my Cake Shop, " + person.getName() + "!");
     System.out.println("Lets make a cake!");
     Cake cake = MakeCake();
-    person.recieveItem(cake);
+    person.giveItem(cake);
 
     System.out.println("Would you like to eat your cake now?");
     String response = this.scanner.nextLine();
