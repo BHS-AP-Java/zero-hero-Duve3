@@ -1,29 +1,44 @@
-// Dhruv H
+// Dhruv Hooda
 // P2
 // Zero Hero
 // 9/19/25
 
 /*
- * DESCRIPTION: mr reiber zero hero cake thing
+ * DESCRIPTION:
+ *  for a baker to make cake,
+ *  bake it at a bakery
+ *  sell it to a customer
+ *  and deliver the money to the PTSA!!!!!
+ *
  * INPUT: You can eat more cake!
- * OUTPUT: Stuff in Command line!!
- * EDGE CASE: machines with too little ram will fail due to memory limitations
+ * OUTPUT: You can watch yourself eat cake!!
+ * EDGE CASE: You can eat infinite cake which isn't possible in real life
  */
 
- // idea:
- //  - while loop that allows person go to into different stores that sell different items and cakes
- //  - turn it into a game
+// idea:
+//  - while loop that allows person go to into different stores that sell different items and cakes
+//  - turn it into a game
 package edu.bhscs;
 
 import java.util.Scanner;
+import edu.bhscs.items.*;
 
 class Main {
 
   private Scanner scanner;
 
+  private Store bakery;
+  private Person person;
+  private Person PTSA;
+
   public void main(String[] args) {
     this.scanner = new Scanner(System.in);
-    Person person = new Person("Person", 50);
+
+    System.out.print("What is your name?\n>");
+    String name = this.scanner.nextLine();
+    this.person = new Person(name, 29);
+
+    this.PTSA = new PTSA();
 
     System.out.println("Welcome to my Cake Shop, " + person.getName() + "!");
     System.out.println("Lets make a cake!");

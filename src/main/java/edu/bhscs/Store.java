@@ -1,5 +1,7 @@
 package edu.bhscs;
 
+import edu.bhscs.items.*;
+
 public class Store {
   private String name;
   private String description;
@@ -7,8 +9,9 @@ public class Store {
 
   /**
    * A store that can sell items, with a limit of two
-   * @param name  The name of the store
-   * @param description  A short description of the store (visually/could be anything)
+   *
+   * @param name The name of the store
+   * @param description A short description of the store (visually/could be anything)
    */
   public Store(String name, String description) {
     this.name = name;
@@ -19,11 +22,12 @@ public class Store {
 
   /**
    * Adds an item to the store's inventory.
-   * @param item  the item to add, of type Item
-   * @param slot  the slot to add the item to, or -1 for first available
-   * @throws ArrayIndexOutOfBoundsException  if the slot is invalid or no available slots
+   *
+   * @param item the item to add, of type Item
+   * @param slot the slot to add the item to, or -1 for first available
+   * @throws ArrayIndexOutOfBoundsException if the slot is invalid or no available slots
    */
-  public void AddItem(Item item, int slot) throws ArrayIndexOutOfBoundsException{
+  public void AddItem(Item item, int slot) throws ArrayIndexOutOfBoundsException {
     if (slot == -1) {
       for (int i = 0; i < inventory.length; i++) {
         if (inventory[i] == null) {

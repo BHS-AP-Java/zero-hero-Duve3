@@ -1,7 +1,8 @@
-package edu.bhscs;
+package edu.bhscs.items;
 
-public class Item {
+public abstract class Item {
   private String name;
+  public int amount;
 
   public Item(String name) {
     this.name = name;
@@ -10,4 +11,6 @@ public class Item {
   public String getName() {
     return name;
   }
+
+  public abstract boolean stack(Item other);
 }
