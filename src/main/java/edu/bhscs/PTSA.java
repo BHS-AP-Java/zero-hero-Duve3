@@ -8,6 +8,6 @@ public class PTSA extends Person {
     super("PTSA", 50);
 
     // we are broke!
-    this.giveItem(new Money(0d));
+    this.giveItem(new Money(67.67d));
   }
 }

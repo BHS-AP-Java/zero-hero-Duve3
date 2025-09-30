@@ -24,17 +24,27 @@ public class Person {
    */
   public void giveItem(Item item, boolean forced) {
     if (forced || this.inventory[this.selectedSlot] == null) {
+      // just putting the item in the slot
       System.out.println(this.name + " got a " + item.getName() + "!");
       this.inventory[this.selectedSlot] = item;
 
     } else if (this.inventory[this.selectedSlot].stack(item)) {
+      // stacking was successful
       System.out.println(this.name + " recieved a" + item.getName() + " and it was stacked.");
+
     } else {
+      // all attempts failed
       System.out.println(
-          this.name + " tried to get a " + item.getName() + " but the slot is occupied.");
+        this.name + " tried to get a " + item.getName() + " but the slot is occupied.");
     }
   }
 
+  /**
+   * Gives an item to the person, placing it in the currently selected inventory slot, without
+   * overwriting existing items.
+   *
+   * @param item the item to give to the person
+   */
   public void giveItem(Item item) {
     giveItem(item, false);
   }

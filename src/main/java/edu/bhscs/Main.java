@@ -20,62 +20,36 @@
 //  - turn it into a game
 package edu.bhscs;
 
-import java.util.Scanner;
 import edu.bhscs.items.*;
+import java.util.Scanner;
 
 class Main {
+  public static void main(String[] args) {
+    // object definition since we have to use a static context
+    PTSA PTSA = new PTSA();
+    Store[] bakerys =
+      new Store[] {new Store("Cool Bakery", "A place that sells *cool* cakes goods"),
+      new Store("Cake Shop", "A place that sells less cool cakes")
+    };
 
-  private Scanner scanner;
 
-  private Store bakery;
-  private Person person;
-  private Person PTSA;
+    Scanner scanner = new Scanner(System.in);
 
-  public void main(String[] args) {
-    this.scanner = new Scanner(System.in);
+    System.out.print("What is your name?\n> ");
+    String name = scanner.nextLine();
+    Person person = new Person(name, 29);
 
-    System.out.print("What is your name?\n>");
-    String name = this.scanner.nextLine();
-    this.person = new Person(name, 29);
 
-    this.PTSA = new PTSA();
+    System.out.println("Hello " + person.getName() + "!");
+    // questionable cast to money but i SWEAR its always money!!
+    System.out.println("The PTSA has: " + ((Money) PTSA.getHeldItem()).getValue() + " dollars!!");
 
-    System.out.println("Welcome to my Cake Shop, " + person.getName() + "!");
-    System.out.println("Lets make a cake!");
-    Cake cake = MakeCake();
-    person.giveItem(cake);
-
-    System.out.println("Would you like to eat your cake now?");
-    String response = this.scanner.nextLine();
-
-    if (response.equalsIgnoreCase("yes")) {
-      Item heldItem = person.getHeldItem();
-      if (heldItem instanceof Cake) {
-        ((Cake) heldItem).eat();
-      } else {
-        System.out.println("You are not holding a cake!");
-      }
-    } else {
-      System.out.println("You can eat your cake later!");
+    // just print all the stores
+    System.out.println("All available stores:");
+    for (Store bakery : bakerys) {
+      System.out.println("- " + bakery.getName() + ": " + bakery.getDescription());
     }
 
-    System.out.println("Pretty cool cake!");
-    System.out.println("Goodbye!");
-
-    this.scanner.close();
-  }
-
-  private Cake MakeCake() {
-    // makes a cake for the user
-    System.out.println("What flavor of cake would you like?");
-    String flavor = this.scanner.nextLine();
-
-    System.out.println("Give another flavor!");
-    String secondFlavor = this.scanner.nextLine();
-
-    System.out.println("How many slices would you like of this cake?");
-    int slices = this.scanner.nextInt();
-
-    return new Cake(new String[] {flavor, secondFlavor}, slices);
+    scanner.close();
   }
 }
