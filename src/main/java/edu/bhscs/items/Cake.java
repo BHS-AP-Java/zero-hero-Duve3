@@ -22,6 +22,6 @@ public class Cake extends Item {
   }
 
   public boolean stack(Item other) {
-    return false; // we do not stack ts
+    return false; // we do not stack!!
   }
 }

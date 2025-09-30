@@ -12,7 +12,8 @@ public class Person {
     this.name = name;
     this.age = age;
 
-    this.inventory = new Item[9]; // our array is fixed size of 9, representing our "hotbar"
+    this.inventory =
+        new Item[9]; // our array is fixed size of 9, representing our "hotbar/inventory"
   }
 
   /**
@@ -35,7 +36,7 @@ public class Person {
     } else {
       // all attempts failed
       System.out.println(
-        this.name + " tried to get a " + item.getName() + " but the slot is occupied.");
+          this.name + " tried to get a " + item.getName() + " but the slot is occupied.");
     }
   }
 

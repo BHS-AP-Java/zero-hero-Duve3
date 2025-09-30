@@ -28,10 +28,10 @@ class Main {
     // object definition since we have to use a static context
     PTSA PTSA = new PTSA();
     Store[] bakerys =
-      new Store[] {new Store("Cool Bakery", "A place that sells *cool* cakes goods"),
-      new Store("Cake Shop", "A place that sells less cool cakes")
-    };
-
+        new Store[] {
+          new Store("Cool Bakery", "A place that sells *cool* cakes goods"),
+          new Store("Cake Shop", "A place that sells less cool cakes")
+        };
 
     Scanner scanner = new Scanner(System.in);
 
@@ -39,10 +39,9 @@ class Main {
     String name = scanner.nextLine();
     Person person = new Person(name, 29);
 
-
     System.out.println("Hello " + person.getName() + "!");
     // questionable cast to money but i SWEAR its always money!!
-    System.out.println("The PTSA has: " + ((Money) PTSA.getHeldItem()).getValue() + " dollars!!");
+    System.out.println("The PTSA has: " + ((Money) PTSA.getHeldItem()).value + " dollars!!");
 
     // just print all the stores
     System.out.println("All available stores:");

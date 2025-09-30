@@ -2,16 +2,18 @@ package edu.bhscs;
 
 import edu.bhscs.items.*;
 
-public class Baker extends Person{
+public class Baker extends Person {
 
   // fields and properities
   public String name;
   public Store bakery;
+  public int skill = 5; // can only cook stuff using items below this quality value!!
 
-  private float BAKE_TIME = 5; // time it takes to bake a cake in seconds
-  private float FINISH_TIME = 0; // time when the cake will be finished
+  public double BAKE_TIME = 5; // time it takes to bake a cake in seconds
+  public double FINISH_TIME = 0; // time when the cake will be finished
 
   private boolean ACTIVELY_BAKING = false; // whether the baker is currently baking
+
   // constructor definition
   public Baker(String name, Store bakery) {
     super(name, 30);
@@ -34,6 +36,8 @@ public class Baker extends Person{
     }
 
     ACTIVELY_BAKING = true;
-    System.out.println(this.name + " is baking a " + cake.getName() + " at " + this.bakery.getName() + "!");
+    FINISH_TIME = System.currentTimeMillis() + (BAKE_TIME * 1000);
+    System.out.println(
+        this.name + " is baking a " + cake.getName() + " at " + this.bakery.getName() + "!");
   }
 }
