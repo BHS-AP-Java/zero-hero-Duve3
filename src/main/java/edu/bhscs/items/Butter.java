@@ -2,19 +2,19 @@ package edu.bhscs.items;
 
 import java.util.Random;
 
-public class Egg extends Sellable {
-  public Egg() {
-    super("Egg", new Random().nextInt(10) + 1);
+public class Butter extends Sellable {
+  public Butter() {
+    super("Butter", new Random().nextInt(10) + 1);
   }
 
   /**
-   * Stacks with the other item, always false for eggs.
+   * Stacks with the other item, always false for butter.
    *
    * @param other
    * @return boolean
    */
   public boolean stack(Item other) {
-    return false; // eggs cannot stack (duh??)
+    return false; // butter cannot stack (duh??)
   }
 
   /**
@@ -24,6 +24,6 @@ public class Egg extends Sellable {
    * @return double the price
    */
   public double CalculatePrice(int quality) {
-    return quality * 0.25 + 5;
+    return quality * 0.75 + 10; // butter is expensive!
   }
 }

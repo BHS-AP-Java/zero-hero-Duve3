@@ -8,6 +8,10 @@ public class Money extends Item {
     this.value = value;
   }
 
+  /**
+   * @param other
+   * @return boolean
+   */
   public boolean stack(Item other) {
     if (other instanceof Money) {
       ((Money) other).value += this.value;

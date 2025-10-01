@@ -2,36 +2,28 @@ package edu.bhscs.items;
 
 import java.util.Random;
 
-public class Flour extends Sellable {
-  // sellable attrs
-  public double price;
-  public int quality;
-
-  // constructor
-  public Flour() {
-    super("Flour", new Random().nextInt(10) + 1);
-    this.amount = 1;
+public class Sugar extends Sellable {
+  public Sugar() {
+    super("Sugar", new Random().nextInt(10) + 1);
   }
 
-  // methods
   /**
-   * Stacks another item onto this one, if possible.
+   * Stacks with the other item, increases amount of sugar and averages quality.
    *
    * @param other
    * @return boolean
    */
   public boolean stack(Item other) {
-    if (other instanceof Flour) {
+    if (other instanceof Sugar) {
       this.amount += other.amount;
 
-      // averaging quality based on our two combined flours
-      this.quality = CalculateQuality(((Flour) other).quality);
+      // averaging quality based on our two combined sugars
+      this.quality = CalculateQuality(((Sugar) other).quality);
 
       // each "tier" of quality is expoentially more expensive
       this.price = CalculatePrice(this.quality);
       return true;
     }
-
     return false;
   }
 
@@ -42,6 +34,6 @@ public class Flour extends Sellable {
    * @return double the price
    */
   public double CalculatePrice(int quality) {
-    return quality * 0.5;
+    return quality * 0.5 + 5; // sugar is cheaper!
   }
 }

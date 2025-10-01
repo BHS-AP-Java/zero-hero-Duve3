@@ -64,6 +64,11 @@ public class Store {
     return description;
   }
 
+  /**
+   * Returns the inventory of the store.
+   *
+   * @return Item[] the inventory array
+   */
   public Item[] getInventory() {
     return inventory;
   }

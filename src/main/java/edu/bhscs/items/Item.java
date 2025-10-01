@@ -8,6 +8,9 @@ public abstract class Item {
     this.name = name;
   }
 
+  /**
+   * @return String
+   */
   public String getName() {
     return name;
   }

@@ -1,27 +1,32 @@
 package edu.bhscs.items;
 
-public class Cake extends Item {
-  private int _slices;
-  private String _flavor;
-  private String _color;
-  private int _weight;
+import java.util.Arrays;
 
-  public Cake(String[] ingredients, int slices) {
-    super("Cake");
-    this._slices = slices;
+public class Cake extends Sellable {
+
+  public Cake(Sellable[] ingredients) {
+    // YES this is bad code, but i dont feel like making a proper name generator for cakes (its ragebait since super call has to be first)
+    super(String.join("-", Arrays.stream(ingredients).map((ingredient) -> ingredient.getName()).toArray(String[]::new)) + " Cake", Math.round(Sellable.SumQualities(ingredients) / ingredients.length));
     this.amount = 1;
-
-    System.out.println(
-        "baking a " + slices + " slices cake with... " + String.join(", ", ingredients));
   }
 
-  public void eat() {
-    System.out.println("Eating a slice of cake");
-    this._slices--;
-    System.out.println("There are " + this._slices + " slices left!");
-  }
-
+  /**
+   * Stacking function, always false.
+   *
+   * @param other
+   * @return boolean
+   */
   public boolean stack(Item other) {
-    return false; // we do not stack!!
+    return false; // cakes cannot stack (duh??)
+  }
+
+  /**
+   * Price calculation for quality
+   *
+   * @param quality an int containing the quality
+   * @return double the price
+   */
+  public double CalculatePrice(int quality) {
+    return quality * 2 + 20;
   }
 }

@@ -46,6 +46,9 @@ class MainTest {
     // assertEquals("", Main.drawIt(0, '*'));
   }
 
+  /**
+   * @throws ()
+   */
   @Disabled
   @Test
   @DisplayName("negative height: throws IAE")
