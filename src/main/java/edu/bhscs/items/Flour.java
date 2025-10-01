@@ -3,14 +3,27 @@ package edu.bhscs.items;
 import java.util.Random;
 
 public class Flour extends Sellable {
-  // sellable attrs
-  public double price;
-  public int quality;
-
   // constructor
   public Flour() {
     super("Flour", new Random().nextInt(10) + 1);
     this.amount = 1;
+  }
+
+  /**
+   * clones the other object and returns a deepcopy
+   *
+   * @param other the other sellable
+   */
+  public Sellable deepClone(Sellable other) {
+    if (other instanceof Flour) {
+      Flour dup = new Flour();
+      dup.quality = this.quality;
+      dup.price = this.price;
+      dup.amount = this.amount;
+      return dup;
+    }
+
+    return null;
   }
 
   // methods

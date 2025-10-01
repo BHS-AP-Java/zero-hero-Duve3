@@ -8,6 +8,23 @@ public class Egg extends Sellable {
   }
 
   /**
+   * clones the other object and returns a deepcopy
+   *
+   * @param other the other sellable
+   */
+  public Sellable deepClone(Sellable other) {
+    if (other instanceof Egg) {
+      Egg dup = new Egg();
+      dup.quality = this.quality;
+      dup.price = this.price;
+      dup.amount = this.amount;
+      return dup;
+    }
+
+    return null;
+  }
+
+  /**
    * Stacks with the other item, always false for eggs.
    *
    * @param other

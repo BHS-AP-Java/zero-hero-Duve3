@@ -14,7 +14,7 @@ public class Money extends Item {
    */
   public boolean stack(Item other) {
     if (other instanceof Money) {
-      ((Money) other).value += this.value;
+      this.value += ((Money) other).value;
 
       return true;
     }

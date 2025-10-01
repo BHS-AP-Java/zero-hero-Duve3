@@ -26,18 +26,28 @@ public class Person {
       // just putting the item in the slot
       if (item instanceof Money) {
         System.out.println(
-            this.name + " recieved $" + ((Money) item).value + " and it was placed in their inventory.");
+            this.name
+                + " recieved $"
+                + ((Money) item).value
+                + " and it was placed in their inventory.");
+
+      } else {
+        System.out.println(this.name + " got a " + item.getName() + "!");
       }
-      System.out.println(this.name + " got a " + item.getName() + "!");
       this.inventory[this.selectedSlot] = item;
 
     } else if (this.inventory[this.selectedSlot].stack(item)) {
       // stacking was successful
       if (item instanceof Money) {
         System.out.println(
-            this.name + " recieved $" + ((Money) item).value + " and it was stacked. New total: $" + ((Money) this.inventory[this.selectedSlot]).value);
+            this.name
+                + " recieved $"
+                + ((Money) item).value
+                + " and it was stacked. New total: $"
+                + ((Money) this.inventory[this.selectedSlot]).value);
+      } else {
+        System.out.println(this.name + " recieved a " + item.getName() + " and it was stacked.");
       }
-      System.out.println(this.name + " recieved a" + item.getName() + " and it was stacked.");
 
     } else {
       // all attempts failed
@@ -61,7 +71,8 @@ public class Person {
   }
 
   /**
-   * Gives an item to the person, placing it in the currently selected inventory slot, and increments the selectedSlot value
+   * Gives an item to the person, placing it in the currently selected inventory slot, and
+   * increments the selectedSlot value
    *
    * @param item
    * @param increment
@@ -84,9 +95,7 @@ public class Person {
     }
   }
 
-  /**
-   * Selects the next slot in the inventory, wrapping around if necessary.
-   */
+  /** Selects the next slot in the inventory, wrapping around if necessary. */
   public void nextSlot() {
     selectSlot(this.selectedSlot + 1 > 8 ? 0 : this.selectedSlot + 1);
   }

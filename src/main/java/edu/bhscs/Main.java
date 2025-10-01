@@ -29,27 +29,37 @@ class Main {
     // ensures a clear console!
     console.clear();
     console.println("Welcome to the PTSA funding game!");
-    console.println("You will be helping the PTSA fundraise by buying ingredients, making cakes, and eating them!");
+    console.println(
+        "You will be helping the PTSA fundraise by buying ingredients, making cakes, and eating them!");
 
     // difficulty selection
-    console.print("What do you want the game difficulty to be? (1-3, 1 being hardest, 3 being easiest)\n> ");
+    console.print(
+        "What do you want the game difficulty to be? (1-3, 1 being hardest, 3 being easiest)\n> ");
     int difficulty = console.readInt();
+    console.readLine(); // to throw out the "\n" that wasn't consumed in the readInt call
+    // ^ odd way of doing it i think but it works..? (without it, it automatically skips the next
+    // readLine call)
+
     if (difficulty < 1 || difficulty > 3) {
       console.println("Invalid difficulty, setting to 2 (medium)");
       difficulty = 2;
     }
 
     console.allowOutput(false);
-    PTSA.giveMoney(new Money(67 * difficulty)); // gives the PTSA money based on difficulty
+    PTSA.giveMoney(new Money(67.41 * difficulty)); // gives the PTSA money based on difficulty
     console.allowOutput(true);
 
-    console.println("The PTSA currently has $" + PTSA.getMoney() + " to give you to start off with! (based off of difficulty!)");
+    console.println(
+        "The PTSA currently has $"
+            + PTSA.getMoney()
+            + " to give you to start off with! (based off of difficulty!)");
 
     console.print("What is your name?\n> ");
     String name = console.readLine();
     Person person = new Person(name);
 
     console.println("Hello " + person.getName() + "!");
+    console.println("(pssssst, you should go to the ptsa!)");
 
     // WARN: we should probably use a switch statement...
     while (true) {
@@ -61,6 +71,7 @@ class Main {
       String[] cmds = input.split(" ");
 
       if (cmds[0].equals("exit") || cmds[0].equals("e")) {
+        console.println("Thanks for playing my game!");
         break;
       }
 
@@ -71,6 +82,7 @@ class Main {
         console.println("- inv/i: show your inventory");
         console.println("- stores/s: show all available stores");
         console.println("- go [store name]: go to a store");
+        console.println("- clear/c: clear the terminal");
         continue;
       }
 
@@ -121,6 +133,12 @@ class Main {
         continue;
       }
 
+      // just clears the terminal for convience
+      if (cmds[0].equals("clear") || cmds[0].equals("c")) {
+        console.clear();
+        continue;
+      }
+
       console.println("Unknown command. Type 'cmds' for a list of commands.");
     }
 
@@ -128,8 +146,8 @@ class Main {
   }
 
   /**
-   * "Enters" a store by printing its inventory and allowing purchasing items.
-   * Automatically goes to other enter functions if the store is a bakery or the PTSA.
+   * "Enters" a store by printing its inventory and allowing purchasing items. Automatically goes to
+   * other enter functions if the store is a bakery or the PTSA.
    *
    * @param store the store to enter
    */
@@ -168,6 +186,7 @@ class Main {
         console.println("- inv/i: show your inventory");
         console.println("- buy [item name]: buy an item from the store");
         console.println("- store/s: show the store's inventory");
+        console.println("- clear/c: clear the terminal");
         continue;
       }
 
@@ -229,13 +248,21 @@ class Main {
                   + selectedItem.getName()
                   + " (Cost: $"
                   + ((Sellable) selectedItem).price
+                  + ", Your money: $"
+                  + (money != null ? money.value : 0)
                   + ")");
           continue;
         }
 
         money.value -= ((Sellable) selectedItem).price;
-        // we have a valid item, "buy" it
-        person.giveItem(selectedItem);
+        // we have a valid item, "buy" it WARN: questionable purchase method... (gotta do some crazy
+        // init stuff to make ts work well)
+        selectedItem.amount -= 1;
+
+        Sellable clone = ((Sellable) selectedItem).deepClone((Sellable) selectedItem);
+        clone.amount = 1;
+        person.giveItem(clone, true);
+
         console.println(
             "You have bought a " + selectedItem.getName() + " from " + store.getName() + "!");
 
@@ -251,10 +278,22 @@ class Main {
         continue;
       }
 
+      // just clears the terminal for convience
+      if (cmds[0].equals("clear") || cmds[0].equals("c")) {
+        console.clear();
+        continue;
+      }
+
       console.println("Unknown command. Type 'cmds' for a list of commands.");
     }
   }
 
+  /**
+   * Like {EnterStore} but for bakeries!
+   *
+   * @param bakery The bakery to enter
+   * @param person The player
+   */
   public static void EnterBakery(Bakery bakery, Person person) {
     Console console = Console.getInstance();
 
@@ -305,7 +344,9 @@ class Main {
           String ingredientName = cmds[i];
           Sellable ingredient = null;
           for (Item item : person.getInventory()) {
-            if (item != null && item.getName().equalsIgnoreCase(ingredientName) && item instanceof Sellable) {
+            if (item != null
+                && item.getName().equalsIgnoreCase(ingredientName)
+                && item instanceof Sellable) {
               // we have found our ingredient, leave the list!
               ingredient = (Sellable) item;
               break;
@@ -318,7 +359,8 @@ class Main {
 
         // Check if we have all the ingredients
         boolean hasAllIngredients = true;
-        // iterates backwards for efficiency since the missing ingredients would be at the end of the array!!
+        // iterates backwards for efficiency since the missing ingredients would be at the end of
+        // the array!!
         for (int i = ingredients.length - 1; i >= 0; i--) {
           if (ingredients[i] == null) {
             hasAllIngredients = false;
@@ -343,7 +385,8 @@ class Main {
 
         // create the cake
         Cake cake = bakery.bake(ingredients);
-        console.println("You have created a " + cake.getName() + " (Quality: " + cake.quality + ")!");
+        console.println(
+            "You have created a " + cake.getName() + " (Quality: " + cake.quality + ")!");
 
         person.giveItem(cake);
         continue;
@@ -357,7 +400,11 @@ class Main {
         }
 
         // searches for the item in the store inventory
-        String itemName = String.join(" ", Arrays.copyOfRange(cmds, 1, cmds.length)); // combine all args after "buy" into one string
+        String itemName =
+            String.join(
+                " ",
+                Arrays.copyOfRange(
+                    cmds, 1, cmds.length)); // combine all args after "buy" into one string
         Item selectedItem = null;
         for (Item item : storeInventory) {
           if (item != null && item.getName().equalsIgnoreCase(itemName)) {
@@ -382,14 +429,25 @@ class Main {
 
         // checks if either we have no money, or if we don't have enough money
         if (money == null || money.value < ((Sellable) selectedItem).price) {
-          console.println("You do not have enough money to buy a " + selectedItem.getName()
-              + " (Cost: $" + ((Sellable) selectedItem).price + ")");
+          console.println(
+              "You do not have enough money to buy a "
+                  + selectedItem.getName()
+                  + " (Cost: $"
+                  + ((Sellable) selectedItem).price
+                  + ", Your money: $"
+                  + (money != null ? money.value : 0)
+                  + ")");
           continue;
         }
 
         money.value -= ((Sellable) selectedItem).price;
-        // we have a valid item, "buy" it
+        int prevAmt = selectedItem.amount;
+        // we have a valid item, "buy" it WARN: questionable purchase method... (gotta do some crazy
+        // init stuff to make ts work well)
+        selectedItem.amount = 1;
         person.giveItem(selectedItem);
+        selectedItem.amount = prevAmt;
+
         console.println(
             "You have bought a " + selectedItem.getName() + " from " + bakery.getName() + "!");
 
@@ -397,8 +455,10 @@ class Main {
         PTSA.giveMoney(new Money(((Sellable) selectedItem).price));
         console.allowOutput(true);
 
-        console.println("The PTSA has received $" + ((Sellable) selectedItem).price
-            + " from your purchase to help fund school activities!");
+        console.println(
+            "The PTSA has received $"
+                + ((Sellable) selectedItem).price
+                + " from your purchase to help fund school activities!");
         console.println("The PTSA now has $" + PTSA.getMoney() + "!");
         continue;
       }
@@ -407,6 +467,11 @@ class Main {
     }
   }
 
+  /**
+   * Enter the PTSA
+   *
+   * @param person the player
+   */
   public static void EnterPTSA(Person person) {
     Console console = Console.getInstance();
 
@@ -424,7 +489,8 @@ class Main {
       PTSA.giveHonoredOne(person);
     } else {
       console.println("You have declined the PTSA's offer.");
-      console.println("You cannot play the game without accepting the PTSA's offer (you broke man you NEED the PTSA).");
+      console.println(
+          "You cannot play the game without accepting the PTSA's offer (you supa broke man, you NEED the PTSA).");
       console.println("Exiting...");
       System.exit(0);
     }
@@ -444,7 +510,13 @@ class Main {
           continue;
         } else if (item instanceof Cake) {
           console.println(
-              "- " + item.amount + "x of " + item.getName() + " (Quality: " + ((Cake) item).quality + ")");
+              "- "
+                  + item.amount
+                  + "x of "
+                  + item.getName()
+                  + " (Quality: "
+                  + ((Cake) item).quality
+                  + ")");
           continue;
         }
         console.println("- " + item.amount + "x of " + item.getName());
@@ -465,9 +537,9 @@ class Main {
 
     Store store =
         new Store("Ingredients store", "A place that sells ingredients (eggs, and flour)");
-    Store store2 = new Store("Another Ingredients store", "A place that sells ingredients (sugar, and butter)");
-
-
+    Store store2 =
+        new Store(
+            "Another Ingredients store", "A place that sells ingredients (sugar, and butter)");
 
     // items
     Flour flour = new Flour();

@@ -10,6 +10,8 @@ public abstract class Sellable extends Item {
     this.price = CalculatePrice(quality);
   }
 
+  public abstract Sellable deepClone(Sellable other);
+
   /**
    * @param other
    * @return int

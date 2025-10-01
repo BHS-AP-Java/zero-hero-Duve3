@@ -16,7 +16,8 @@ public class Baker extends Person {
   // methods
 
   /**
-   * Starts baking a cake, currently just a placeholder (in the future there will be timers and stuff)
+   * Starts baking a cake, currently just a placeholder (in the future there will be timers and
+   * stuff)
    *
    * @param cake The cake to back
    */
