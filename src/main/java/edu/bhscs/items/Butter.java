@@ -1,3 +1,15 @@
+// Dhruv Hooda
+// P2
+// Zero Hero
+// 9/19/25
+
+/*
+ * DESCRIPTION: Butter class that extends sellable
+ * INPUT: No real input i guess!
+ * OUTPUT: Creates butter, which is needed for cakes
+ * EDGE CASE: uhh, not really?
+ */
+
 package edu.bhscs.items;
 
 import java.util.Random;
