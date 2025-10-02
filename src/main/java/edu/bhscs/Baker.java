@@ -4,10 +4,10 @@
 // 9/19/25
 
 /*
- * DESCRIPTION: Its a game where you can buy cakes from bakeries to help fund the PTSA!
- * INPUT: You can eat more cake!
- * OUTPUT: You can watch yourself eat cake!!
- * EDGE CASE: Shortage of cakes!
+ * DESCRIPTION: Bakewr is the extension of the Person class that allows for baking
+ * INPUT: Name is put in the constructor
+ * OUTPUT: Cake is outputted from the bake function
+ * EDGE CASE: This class does not really do anything, so its hard to think of an edge case
  */
 
 package edu.bhscs;

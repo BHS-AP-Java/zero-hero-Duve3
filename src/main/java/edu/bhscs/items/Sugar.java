@@ -4,11 +4,12 @@
 // 9/19/25
 
 /*
- * DESCRIPTION: Its a game where you can buy cakes from bakeries to help fund the PTSA!
- * INPUT: You can eat more cake!
- * OUTPUT: You can watch yourself eat cake!!
- * EDGE CASE: Shortage of cakes!
+ * DESCRIPTION: Sugar class that extends sellable and is used for sugar!
+ * INPUT: No real input i guess!
+ * OUTPUT: Creates sugar which is quite important for all the ingredients
+ * EDGE CASE: probably a bug in here but idk what it is
  */
+
 
 package edu.bhscs.items;
 

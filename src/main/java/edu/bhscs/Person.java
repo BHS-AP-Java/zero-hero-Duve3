@@ -4,10 +4,10 @@
 // 9/19/25
 
 /*
- * DESCRIPTION: Its a game where you can buy cakes from bakeries to help fund the PTSA!
- * INPUT: You can eat more cake!
- * OUTPUT: You can watch yourself eat cake!!
- * EDGE CASE: Shortage of cakes!
+ * DESCRIPTION: The class that is used on the baker and the player
+ * INPUT: Name, and inventory. allows for items
+ * OUTPUT: A person that can giveItems and hold items
+ * EDGE CASE: Shortage of fun!
  */
 
 package edu.bhscs;

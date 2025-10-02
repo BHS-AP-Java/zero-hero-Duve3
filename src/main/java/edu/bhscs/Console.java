@@ -1,15 +1,14 @@
 // Dhruv Hooda
 // P2
 // Zero Hero
-// 9/19/25
+// 9/29/25
 
 /*
- * DESCRIPTION: Its a game where you can buy cakes from bakeries to help fund the PTSA!
- * INPUT: You can eat more cake!
- * OUTPUT: You can watch yourself eat cake!!
- * EDGE CASE: Shortage of cakes!
+ * DESCRIPTION: A console that abstracts away the println
+ * INPUT: any user input via scanner
+ * OUTPUT: any console output via system.out
+ * EDGE CASE: not really edge case but often the console can close output (via output) then breaks without error
  */
-
 
 package edu.bhscs;
 

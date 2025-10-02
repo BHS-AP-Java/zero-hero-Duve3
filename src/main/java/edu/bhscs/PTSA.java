@@ -4,10 +4,10 @@
 // 9/19/25
 
 /*
- * DESCRIPTION: Its a game where you can buy cakes from bakeries to help fund the PTSA!
- * INPUT: You can eat more cake!
- * OUTPUT: You can watch yourself eat cake!!
- * EDGE CASE: Shortage of cakes!
+ * DESCRIPTION: The PTSA that is necessary for winning the game!
+ * INPUT: Whether or not you want to recieve money!
+ * OUTPUT: The PTSA gets money and you get money!
+ * EDGE CASE: Shortage of money!
  */
 
 package edu.bhscs;
