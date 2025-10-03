@@ -10,7 +10,6 @@
  * EDGE CASE: probably a bug in here but idk what it is
  */
 
-
 package edu.bhscs.items;
 
 import java.util.Random;
