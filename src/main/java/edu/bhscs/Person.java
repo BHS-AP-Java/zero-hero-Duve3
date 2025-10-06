@@ -1,13 +1,13 @@
 // Dhruv Hooda
 // P2
 // Zero Hero
-// 9/19/25
+// 09/19/25
 
 /*
  * DESCRIPTION: The class that is used on the baker and the player
  * INPUT: Name, and inventory. allows for items
  * OUTPUT: A person that can giveItems and hold items
- * EDGE CASE: Shortage of fun!
+ * EDGE CASE: Shortage of people?
  */
 
 package edu.bhscs;
@@ -18,12 +18,14 @@ public class Person {
   private String name; // Person name
   private Item[] inventory; // Inventory array to hold items
   private int selectedSlot = 0; // Index of the currently selected inventory slot
+  private Money money; // the money the person has
 
   public Person(String name) {
     this.name = name;
 
-    this.inventory =
-        new Item[9]; // our array is fixed size of 9, representing our "hotbar/inventory"
+    this.money = new Money(0d);
+
+    this.inventory = new Item[9]; // our inv is 9, representing a "hotbar"
   }
 
   /**
@@ -34,36 +36,34 @@ public class Person {
    *     the slot is empty
    */
   public void giveItem(Item item, boolean increment, boolean forced) {
+    Console console = Console.getInstance();
+    if (item instanceof Money) {
+      if (!this.money.stack(item)) {
+        System.out.println("MONEY STACK FAILED, REPORT THIS!");
+        return;
+      }
+
+      console.println(
+          this.name
+              + " recieved $"
+              + ((Money) item).value
+              + " and it was stacked with previous money for a total of:\n$"
+              + this.money.value);
+      return;
+    }
+
     if (forced || this.inventory[this.selectedSlot] == null) {
       // just putting the item in the slot
-      if (item instanceof Money) {
-        System.out.println(
-            this.name
-                + " recieved $"
-                + ((Money) item).value
-                + " and it was placed in their inventory.");
-
-      } else {
-        System.out.println(this.name + " got a " + item.getName() + "!");
-      }
+      console.println(this.name + " got a " + item.getName() + "!");
       this.inventory[this.selectedSlot] = item;
 
     } else if (this.inventory[this.selectedSlot].stack(item)) {
       // stacking was successful
-      if (item instanceof Money) {
-        System.out.println(
-            this.name
-                + " recieved $"
-                + ((Money) item).value
-                + " and it was stacked. New total: $"
-                + ((Money) this.inventory[this.selectedSlot]).value);
-      } else {
-        System.out.println(this.name + " recieved a " + item.getName() + " and it was stacked.");
-      }
+      console.println(this.name + " recieved a " + item.getName() + " and it was stacked.");
 
     } else {
       // all attempts failed
-      System.out.println(
+      console.println(
           this.name + " tried to get a " + item.getName() + " but the slot is occupied.");
     }
 
@@ -133,9 +133,42 @@ public class Person {
   /**
    * Gets the inventory of the person.
    *
-   * @return
+   * @return Item[], an array of the inventory
    */
   public Item[] getInventory() {
     return this.inventory;
+  }
+
+  /** Console.println's the inventory to console, including money */
+  public void ListInventory() {
+    Console console = Console.getInstance();
+
+    console.println("Money: $" + this.money.value);
+
+    for (Item item : inventory) {
+      if (item != null) {
+        // if its cake, lets do a different print that allows more features
+        if (item instanceof Cake) {
+          console.println(
+              "- "
+                  + item.amount
+                  + "x of "
+                  + item.getName()
+                  + " (Quality: "
+                  + ((Cake) item).quality
+                  + ")");
+          continue;
+        }
+        // otherwise just print it normally!
+        console.println("- " + item.amount + "x of " + item.getName());
+      } else {
+        // otherwise we print nun (you got nun!)!
+      }
+    }
+  }
+
+  /** Returns the Money object used for money */
+  public Money getMoney() {
+    return this.money;
   }
 }

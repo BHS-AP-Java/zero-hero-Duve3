@@ -4,10 +4,10 @@
 // 9/29/25
 
 /*
- * DESCRIPTION: A console that abstracts away the println
+ * DESCRIPTION: A console that abstracts away the println and scanner
  * INPUT: any user input via scanner
  * OUTPUT: any console output via system.out
- * EDGE CASE: not really edge case but often the console can close output (via output) then breaks without error
+ * EDGE CASE: not really edge case but often the console can stop output (via allowOutput) then breaks without error
  */
 
 package edu.bhscs;
@@ -26,6 +26,9 @@ public class Console {
 
   /**
    * Get the singleton instance of the Console
+   *
+   * <p>The keyword synchronized here prevents it being called from other threads, this prevents a
+   * situation where single_instance is written to multiple times
    *
    * @return Console
    */

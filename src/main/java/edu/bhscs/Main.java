@@ -87,8 +87,7 @@ class Main {
       if (cmds[0].equals("inv") || cmds[0].equals("i")) {
         // lists all items in the inventory (lists empty for empty slots)
         console.println(person.getName() + "'s Inventory: (9 slots)");
-        Item[] inventory = person.getInventory();
-        ListInventory(inventory);
+        person.ListInventory();
         continue;
       }
 
@@ -191,8 +190,7 @@ class Main {
       if (cmds[0].equals("inv") || cmds[0].equals("i")) {
         // lists all items in the inventory (lists empty for empty slots)
         console.println("Your Inventory: (9 slots)");
-        Item[] inventory = person.getInventory();
-        ListInventory(inventory);
+        person.ListInventory();
         continue;
       }
 
@@ -231,13 +229,7 @@ class Main {
         }
 
         // searches for money
-        Money money = null;
-        for (Item item : person.getInventory()) {
-          if (item instanceof Money) {
-            money = (Money) item;
-            break;
-          }
-        }
+        Money money = person.getMoney();
 
         // checks if either we have no money, or if we don't have enough money
         if (money == null || money.value < ((Sellable) selectedItem).price) {
@@ -324,8 +316,7 @@ class Main {
       if (cmds[0].equals("inv") || cmds[0].equals("i")) {
         // lists all items in the inventory (lists empty for empty slots)
         console.println("Your Inventory: (9 slots)");
-        Item[] inventory = person.getInventory();
-        ListInventory(inventory);
+        person.ListInventory();
         continue;
       }
 
@@ -417,13 +408,7 @@ class Main {
         }
 
         // searches for money
-        Money money = null;
-        for (Item item : person.getInventory()) {
-          if (item instanceof Money) {
-            money = (Money) item;
-            break;
-          }
-        }
+        Money money = person.getMoney();
 
         // checks if either we have no money, or if we don't have enough money
         if (money == null || money.value < ((Sellable) selectedItem).price) {
@@ -503,10 +488,8 @@ class Main {
     Console console = Console.getInstance();
     for (Item item : inventory) {
       if (item != null) {
-        if (item instanceof Money) {
-          console.println("- $" + ((Money) item).value + " of " + item.getName());
-          continue;
-        } else if (item instanceof Cake) {
+        // if its cake, lets do a different print that allows more features
+        if (item instanceof Cake) {
           console.println(
               "- "
                   + item.amount
@@ -517,9 +500,10 @@ class Main {
                   + ")");
           continue;
         }
+        // otherwise just print it normally!
         console.println("- " + item.amount + "x of " + item.getName());
       } else {
-        console.println("- 0x of EMPTY");
+        // otherwise we print nun (you got nun!)!
       }
     }
   }

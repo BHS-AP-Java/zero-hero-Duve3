@@ -51,15 +51,7 @@ public class PTSA extends Store {
    * @return
    */
   public double getMoney() {
-    for (Item item : this.person.getInventory()) {
-      if (item == null) {
-        continue;
-      }
-      if (item instanceof Money) {
-        return ((Money) item).value;
-      }
-    }
-    return 0;
+    return this.person.getMoney().value;
   }
 
   /**
