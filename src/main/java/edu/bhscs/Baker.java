@@ -4,7 +4,7 @@
 // 9/19/25
 
 /*
- * DESCRIPTION: Bakewr is the extension of the Person class that allows for baking
+ * DESCRIPTION: mr reibers super cool baker class baker bkaer
  * INPUT: Name is put in the constructor
  * OUTPUT: Cake is outputted from the bake function
  * EDGE CASE: This class does not really do anything, so its hard to think of an edge case
@@ -14,29 +14,36 @@ package edu.bhscs;
 
 import edu.bhscs.items.*;
 
-public class Baker extends Person {
+public class Baker {
+  // PROPERTIES AND FIELDS
+  Player p;
+  Flour f;
+  Store placeOfWork;
+  int cash;
+  String name; // added because it didnt exist???
 
-  // fields and properities
-  public String name;
-
-  // constructor definition
-  public Baker(String name) {
-    super(name);
+  // CONSTRUCTOR
+  Baker(Player p, String name) {
+    this.p = p;
     this.name = name;
   }
 
-  // methods
+  // METHODS
+  public void takeOrder(int price, Customer c) {
+    cash += (int) c.pay(price); // ???
+    c.takeCake(bakeCake());
+  }
 
-  /**
-   * Starts baking a cake, currently just a placeholder (in the future there will be timers and
-   * stuff)
-   *
-   * @param cake The cake to back
-   */
-  public Cake bake(Cake cake) {
-    Console console = Console.getInstance();
-    console.println(this.name + " is baking a " + cake.getName() + "!");
+  public Cake bakeCake() {
+    String answer = this.p.giveAnswer("what cake do you you want?");
+    return new Cake(answer, this.f);
+  }
 
-    return cake;
+  public void takeJob(Store bakery) {
+    String doYouWantToWorkHere = this.p.giveAnswer("Do you want to work at " + bakery.getName());
+    if (doYouWantToWorkHere.equals("y")) {
+      this.placeOfWork = bakery;
+      System.out.println(this.name + " now works at " + bakery.getName());
+    }
   }
 }

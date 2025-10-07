@@ -33,6 +33,10 @@ public class Cake extends Sellable {
     this.ingredients = ingredients;
   }
 
+  public Cake(String desc, Flour ingredientFlour) {
+    super(desc, ingredientFlour.quality);
+  }
+
   /**
    * Stacking function, always false.
    *
