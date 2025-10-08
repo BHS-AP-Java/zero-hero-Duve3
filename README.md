@@ -1,3 +1,10 @@
+go to branch "opininated" if you want to see my other version,
+branch main is following whatever mr reiber says
+
+there is currently a lot of "dead code" that needs to be cleaned up or used
+I am working on cleaning it up and keeping whats useful to our new gameloop
+
+[![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-2e0aaae1b6195c2367325f4f02e2d04e9abb55f0b24a779b69b11b9e10269abc.svg)](https://classroom.github.com/online_ide?assignment_repo_id=20333282&assignment_repo_type=AssignmentRepo)
 # AP Java Starter Project (Bothell High)
 
 This is a starter template for all Java assignments in AP CS-A at Bothell High School.
