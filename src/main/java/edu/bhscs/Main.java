@@ -19,10 +19,10 @@ class Main {
   // fields and properities
   private static final PTSA PTSA = new PTSA();
 
-  // constructor
+  // constructor? (main func)
   public static void main(String[] args) {
     // questionably made, rewritten for our new objective
-    // ^ rewritten from "you are the customer and baker" to just "you are baker"
+    // ^ rewritten from "you are the customer and baker" to just "you are baker/worker"
     Console console = Console.getInstance();
 
     console.clear();
@@ -58,8 +58,6 @@ class Main {
       if (cmds[0].equals("work")) {
         baker.takeJob(bakery);
 
-
-
         // customer loop
         while (true) {
           console.print("A customer walks in! Do you want to take their order? (y/n)\n> ");
@@ -78,13 +76,15 @@ class Main {
 
             double happiness = c.getHappiness();
 
-            console.println("The customer named " + c.getName() + " has a happiness of " + happiness);
+            console.println(
+                "The customer named " + c.getName() + " has a happiness of " + happiness);
 
             baker.learn(price);
             console.println("Your baker's skill is now: " + baker.skill + "!");
           } else {
             console.println("You let the customer walk away...");
-            console.println("Because the customer left you got fired from " + bakery.getName() + "!");
+            console.println(
+                "Because the customer left you got fired from " + bakery.getName() + "!");
             break;
           }
         }

@@ -3,15 +3,15 @@ package edu.bhscs;
 import edu.bhscs.items.*;
 
 public class Customer extends Person {
-  // fields
+  // -- fields --
   private double happiness = 0;
 
-  // constuctor
+  // -- constuctor --
   public Customer(String name) {
     super(name);
   }
 
-  // methods
+  // -- methods --
   public void takeCake(Cake cake) {
     this.giveItem(cake);
     this.happiness += cake.quality;

@@ -15,15 +15,19 @@ package edu.bhscs;
 import java.util.Scanner;
 
 public class Console {
+  // -- fields and props --
   private static final Scanner scanner = new Scanner(System.in);
 
   private static Console single_instance = null;
   private static boolean allow_output = true;
 
+  // -- constructor -- but notice how its private, only can be initalized
+  // by the class itself!
   private Console() {
     System.out.println("Console initialized");
   }
 
+  // -- methods -- 
   /**
    * Get the singleton instance of the Console
    *

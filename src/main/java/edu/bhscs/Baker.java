@@ -15,7 +15,7 @@ package edu.bhscs;
 import edu.bhscs.items.*;
 
 public class Baker {
-  // PROPERTIES AND FIELDS
+  // -- PROPERTIES AND FIELDS --
   Player p;
   Flour f;
   Store placeOfWork;
@@ -23,13 +23,13 @@ public class Baker {
   String name; // added because it didnt exist???
   int skill;
 
-  // CONSTRUCTOR
+  // -- CONSTRUCTOR --
   Baker(Player p, String name) {
     this.p = p;
     this.name = name;
   }
 
-  // METHODS
+  // -- METHODS --
   public void takeOrder(int price, Customer c) {
     cash += (int) c.pay(price); // ???
     c.takeCake(bakeCake());

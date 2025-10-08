@@ -15,9 +15,10 @@ package edu.bhscs;
 import edu.bhscs.items.*;
 
 public class PTSA extends Store {
-
+  // -- fields and props --
   private Person person;
 
+  // -- constructor --
   public PTSA() {
     super("PTSA", "The Objective.");
     this.person = new Person("PTSA");
@@ -26,6 +27,7 @@ public class PTSA extends Store {
     giveMoney(new Money(0d));
   }
 
+  // -- methods --
   /**
    * To give money to the PTSA
    *

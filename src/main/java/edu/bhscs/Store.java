@@ -15,10 +15,12 @@ package edu.bhscs;
 import edu.bhscs.items.*;
 
 public class Store {
+  // -- fields --
   private String name;
   private String description;
   private Item[] inventory;
 
+  // -- constructor --
   /**
    * A store that can sell items, with a limit of two
    *
@@ -32,6 +34,7 @@ public class Store {
     this.inventory = new Item[2]; // stores can only hold 2 items!
   }
 
+  // -- methods --
   /**
    * Adds an item to the store's inventory.
    *

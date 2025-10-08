@@ -15,16 +15,16 @@ package edu.bhscs;
 import edu.bhscs.items.*;
 
 public class Bakery extends Store {
-  // fields
+  // -- fields --
   private Baker baker;
 
-  // constructor
+  // -- constructor --
   public Bakery(String name, String description, Baker baker) {
     super(name, description);
     this.baker = baker;
   }
 
-  // methods
+  // -- methods --
   public Cake bake(Sellable[] ingredients) {
     return baker.bakeCake();
   }

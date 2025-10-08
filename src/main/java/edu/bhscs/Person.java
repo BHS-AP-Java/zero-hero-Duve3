@@ -15,11 +15,13 @@ package edu.bhscs;
 import edu.bhscs.items.*;
 
 public class Person {
+  // -- fields and properities --
   private String name; // Person name
   private Item[] inventory; // Inventory array to hold items
   private int selectedSlot = 0; // Index of the currently selected inventory slot
   private Money money; // the money the person has
 
+  // -- constructor --
   public Person(String name) {
     this.name = name;
 
@@ -28,6 +30,7 @@ public class Person {
     this.inventory = new Item[9]; // our inv is 9, representing a "hotbar"
   }
 
+  // -- methods --
   /**
    * Gives an item to the person, placing it in the currently selected inventory slot
    *
