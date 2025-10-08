@@ -33,8 +33,25 @@ public class Cake extends Sellable {
     this.ingredients = ingredients;
   }
 
-  public Cake(String desc, Flour ingredientFlour) {
-    super(desc, ingredientFlour.quality);
+  public Cake(String desc, Flour ingredientFlour, int skill) {
+    super(createPrefix(skill) + desc + " cake", ingredientFlour.quality + skill);
+  }
+
+  private static String createPrefix(int skill) {
+    String prefix = "";
+    if (skill > 15) {
+      prefix = "masterpiece ";
+    } else if (skill > 10) {
+      prefix = "gourmet ";
+    } else if (skill > 5) {
+      prefix = "deluxe ";
+    } else if (skill > 2) {
+      prefix = "fancy ";
+    } else {
+      prefix = "simple ";
+    }
+
+    return prefix;
   }
 
   /**

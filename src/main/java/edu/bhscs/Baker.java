@@ -21,6 +21,7 @@ public class Baker {
   Store placeOfWork;
   int cash;
   String name; // added because it didnt exist???
+  int skill;
 
   // CONSTRUCTOR
   Baker(Player p, String name) {
@@ -34,9 +35,13 @@ public class Baker {
     c.takeCake(bakeCake());
   }
 
+  public void learn(int amount) {
+    this.skill += amount;
+  }
+
   public Cake bakeCake() {
     String answer = this.p.giveAnswer("what cake do you you want?");
-    return new Cake(answer, this.f);
+    return new Cake(answer, this.f, this.skill);
   }
 
   public void takeJob(Store bakery) {
