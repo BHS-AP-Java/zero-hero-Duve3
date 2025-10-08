@@ -13,7 +13,6 @@
 package edu.bhscs;
 
 import edu.bhscs.items.*;
-import java.util.Arrays;
 
 class Main {
   // fields and properities
@@ -25,9 +24,11 @@ class Main {
     // ^ rewritten from "you are the customer and baker" to just "you are baker"
     Console console = Console.getInstance();
 
-
     console.print("What is your name?\n> ");
     Player player = new Player(console.readLine());
+
+    Baker baker = new Baker(player, "gurt");
+    Store bakery = new Store("mr reibers bakery", "pretty cool bakery");
 
     console.println("Welcome " + player.getName() + "!");
 
@@ -50,9 +51,29 @@ class Main {
 
       if (cmds[0].equals("work")) {
         console.println("You now work for mr reibers bakery");
+
+        baker.takeJob(bakery);
+
+        int price = 5;
+
+        // customer loop
+        while (true) {
+          console.print("A customer walks in! Do you want to take their order? (y/n)\n> ");
+          String answer = console.readLine();
+
+          if (answer.equals("y")) {
+            Customer c = new Customer("customa"); // customer has $20
+            baker.takeOrder(price, c);
+
+
+          } else {
+            console.println("You let the customer walk away...");
+            break;
+          }
+        }
       }
-    }
 
     console.close();
+    }
   }
 }
